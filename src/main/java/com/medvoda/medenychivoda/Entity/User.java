@@ -1,15 +1,10 @@
-package Entity;
-
-
+package com.medvoda.medenychivoda.Entity;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
-
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
-    @jakarta.persistence.Id
-    @Column(name = "id",nullable = false)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

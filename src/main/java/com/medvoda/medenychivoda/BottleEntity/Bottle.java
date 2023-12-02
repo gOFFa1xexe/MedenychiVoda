@@ -1,17 +1,30 @@
-package Entity.BottleEntity;
+package com.medvoda.medenychivoda.BottleEntity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import jakarta.persistence.*;
 
 
+@Entity
+@Table(name = "bottle")
 public class Bottle {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "carbonation_level")
     private CarbonationLevel carbonationLevel;
+
+    @Column(name = "volume")
     private double volume;
 
 
     public Bottle(CarbonationLevel carbonatedLevel, double volume) {
         this.volume = volume;
+    }
+
+    public Bottle() {
+
     }
 
     public CarbonationLevel getCarbonationLevel() {

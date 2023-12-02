@@ -1,17 +1,17 @@
-package Entity;
+package com.medvoda.medenychivoda.BottleEntity;
 
-import Entity.BottleEntity.Bottle;
-import Entity.BottleEntity.CarbonationLevel;
 import jakarta.persistence.*;
 
+
 @Entity
-@Table(name = "package")
-public class Package {
+@Table(name = "packages")
+public class Packages {
 
    @Column(name="number_of_bottles",nullable = false)
     private int numberOfBottles;
     @Column(name="quantity",nullable = false)
     private int quantity;
+    @Enumerated(EnumType.STRING)
     @Column(name="carbonationLevel",nullable = false)
     private CarbonationLevel carbonationLevel;
 
@@ -21,13 +21,14 @@ public class Package {
     private Long id;
 
 
-    public Package(int numberOfBottles, int quantity, Bottle bottle) {
+
+    public Packages(int numberOfBottles, int quantity, Bottle bottle) {
         this.carbonationLevel=bottle.getCarbonationLevel();
         this.numberOfBottles = numberOfBottles;
         this.quantity=quantity;
     }
 
-    public Package() {
+    public Packages() {
 
     }
 
