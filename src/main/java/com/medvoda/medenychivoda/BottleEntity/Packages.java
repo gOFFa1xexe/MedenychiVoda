@@ -6,7 +6,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "packages")
 public class Packages {
-
+    @Column(name = "package_id",nullable = false)
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
    @Column(name="number_of_bottles",nullable = false)
     private int numberOfBottles;
     @Column(name="quantity",nullable = false)
@@ -15,10 +18,7 @@ public class Packages {
     @Column(name="carbonationLevel",nullable = false)
     private CarbonationLevel carbonationLevel;
 
-    @Column(name = "package_id",nullable = false)
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    
 
 
 
