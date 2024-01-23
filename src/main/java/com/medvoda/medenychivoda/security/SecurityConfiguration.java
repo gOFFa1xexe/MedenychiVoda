@@ -21,7 +21,7 @@ public class SecurityConfiguration  {
 
 
 
-    @Bean
+        @Bean
         public UserDetailsManager userDetailsManager(DataSource dataSource){
             JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
             jdbcUserDetailsManager.setUsersByUsernameQuery("select login, password, id from users where login=?");
@@ -31,8 +31,8 @@ public class SecurityConfiguration  {
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity httpSecurity )throws Exception{
             httpSecurity.authorizeHttpRequests(configurer->configurer
-                    .requestMatchers("/home").hasRole("ADMIN").anyRequest().authenticated());
-            httpSecurity.formLogin(form->form.defaultSuccessUrl("/home",true));
+                    .requestMatchers("/main").hasRole("ADMIN").anyRequest().authenticated());
+            httpSecurity.formLogin(form->form.defaultSuccessUrl("/main",true));
             httpSecurity.csrf(csrf-> csrf.disable());
 
             return httpSecurity.build();

@@ -22,14 +22,18 @@ public class Packages {
 
 
 
-    public Packages(int numberOfBottles, int quantity, Bottle bottle) {
-        this.carbonationLevel=bottle.getCarbonationLevel();
+    public Packages(int numberOfBottles, int quantity, CarbonationLevel carbonationLevel) {
+        this.carbonationLevel=carbonationLevel;
         this.numberOfBottles = numberOfBottles;
         this.quantity=quantity;
     }
 
     public Packages() {
 
+    }
+
+    public void setCarbonationLevel(CarbonationLevel carbonationLevel) {
+        this.carbonationLevel = carbonationLevel;
     }
 
     public int getNumberOfBottles() {

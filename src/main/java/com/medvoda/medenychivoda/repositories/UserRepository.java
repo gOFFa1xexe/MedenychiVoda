@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @EnableAutoConfiguration
 public interface UserRepository extends JpaRepository<User,Long > {
 
+
 }

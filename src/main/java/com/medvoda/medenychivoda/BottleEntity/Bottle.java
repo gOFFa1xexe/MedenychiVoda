@@ -19,6 +19,14 @@ public class Bottle {
     private double volume;
 
 
+    public void setCarbonationLevel(CarbonationLevel carbonationLevel) {
+        this.carbonationLevel = carbonationLevel;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
     public Bottle(CarbonationLevel carbonatedLevel, double volume) {
         this.volume = volume;
     }
