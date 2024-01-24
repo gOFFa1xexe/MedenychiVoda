@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<head>
+    <title>Medenychi Voda</title>
+</head>
+<body>
+
+<h1>Hello</h1>
+User: <span sec:authentication="principal.username"></span>
+<br><br>
+Role(s): <span sec:authentication="principal.authorities"></span>
+
+<div class="container mt-5">
+    <h2>Статистична Таблиця</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Тип</th>
+            <th scope="col">Кількість</th>
+            <th scope="col">Дії</th> <!-- Додайте заголовок для колонки з кнопками -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Негазована вода</td>
+            <td th:text="${nonCarbonatedCount}"></td>
+            <td>
+                <form th:action="@{'/main/add-package/NONE'}" method="post">
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="quantity" required>
+                        <input type="hidden" name="carbonationLevel" value="NONE">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Додати</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>Сильногазована вода</td>
+            <td th:text="${strongCarbonatedCount}"></td>
+            <td>
+                <form th:action="@{'/main/add-package/STRONG'}" method="post">
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="quantity" required>
+                        <input type="hidden" name="carbonationLevel" value="STRONG">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Додати</button>
+
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>Слабогазована вода</td>
+            <td th:text="${weakCarbonatedCount}"></td>
+            <td>
+                <form th:action="@{'/main/add-package/LIGHT'}" method="post">
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="quantity" required>
+                        <input type="hidden" name="carbonationLevel" value="LIGHT">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Додати</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
