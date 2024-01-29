@@ -1,6 +1,9 @@
 package com.medvoda.medenychivoda.BottleEntity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -10,22 +13,42 @@ public class Packages {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-   @Column(name="number_of_bottles",nullable = false)
-    private int numberOfBottles;
-    @Column(name="quantity",nullable = false)
-    private int quantity;
+
+   @Enumerated(EnumType.STRING)
+    @Column(name="capacity",nullable = false)
+    private PackageCapacity packageCapacity;
+
     @Enumerated(EnumType.STRING)
     @Column(name="carbonationLevel",nullable = false)
     private CarbonationLevel carbonationLevel;
 
-    
+
+    @Column(name = "creation_time")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
 
 
-    public Packages(int numberOfBottles, int quantity, CarbonationLevel carbonationLevel) {
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public PackageCapacity getPackageCapacity() {
+        return packageCapacity;
+    }
+
+    public void setPackageCapacity(PackageCapacity packageCapacity) {
+        this.packageCapacity = packageCapacity;
+    }
+
+    public Packages(PackageCapacity packageCapacity, CarbonationLevel carbonationLevel) {
         this.carbonationLevel=carbonationLevel;
-        this.numberOfBottles = numberOfBottles;
-        this.quantity=quantity;
+
+        this.packageCapacity=packageCapacity;
     }
 
     public Packages() {
@@ -36,23 +59,16 @@ public class Packages {
         this.carbonationLevel = carbonationLevel;
     }
 
-    public int getNumberOfBottles() {
-        return numberOfBottles;
-    }
 
     public Long getId() {
         return id;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
+
 
     public CarbonationLevel getCarbonationLevel() {
         return carbonationLevel;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+
 }

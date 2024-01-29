@@ -1,11 +1,15 @@
 package com.medvoda.medenychivoda.services;
 
 import com.medvoda.medenychivoda.BottleEntity.CarbonationLevel;
+import com.medvoda.medenychivoda.BottleEntity.PackageCapacity;
 import com.medvoda.medenychivoda.BottleEntity.Packages;
 import com.medvoda.medenychivoda.repositories.PackageRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
 
 @Service
 public class PackageService {
@@ -15,17 +19,27 @@ public class PackageService {
         this.packageRepository=packageRepository;
     }
 
-    public int getPackageCountByCarbonationLevel(CarbonationLevel carbonationLevel){
-        return packageRepository.countByCarbonationLevel(carbonationLevel);
+    public int getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel carbonationLevel, PackageCapacity packageCapacity){
+        return packageRepository.countByCarbonationLevelAndPackageCapacity(carbonationLevel,packageCapacity);
     }
 
-    @Transactional
-    public void addPackage(CarbonationLevel carbonationLevel, int quantity) {
 
+    public int getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel carbonationLevel,
+                                                                   PackageCapacity packageCapacity){
+        LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
+        return packageRepository.countByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(carbonationLevel,packageCapacity,today);
+    }
+    public int getPackageCountByPackageCapacityAndCreatedAt(PackageCapacity packageCapacity){
+        LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
+        return packageRepository.countByPackageCapacityAndCreatedAtAfter(packageCapacity,today);
+    }
+    @Transactional
+    public void addPackage(CarbonationLevel carbonationLevel, int quantity, PackageCapacity packageCapacity) {
 
         for(int i =1;i<=quantity;i++) {
             Packages newPackage=new Packages();
             newPackage.setCarbonationLevel(carbonationLevel);
+            newPackage.setPackageCapacity(packageCapacity);
             packageRepository.save(newPackage);
         }
     }
