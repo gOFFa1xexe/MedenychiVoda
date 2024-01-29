@@ -41,7 +41,7 @@
                 <td>
                     <form th:action="@{'/main/add-package/NONE'}" method="post">
                         <div class="form-group">
-                            <input type="number" class="form-control" name="quantity" required>
+                            <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
                             <input type="hidden" name="carbonationLevel" value="NONE">
                             <input type="hidden" name="packageCapacity" value="HALF_LITER">
                         </div>
@@ -56,7 +56,7 @@
                 <td>
                     <form th:action="@{'/main/add-package/STRONG'}" method="post">
                         <div class="form-group">
-                            <input type="number" class="form-control" name="quantity" required>
+                            <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
                             <input type="hidden" name="carbonationLevel" value="STRONG">
                             <input type="hidden" name="packageCapacity" value="HALF_LITER">
                         </div>
@@ -71,7 +71,7 @@
                 <td>
                     <form th:action="@{'/main/add-package/LIGHT'}" method="post">
                         <div class="form-group">
-                            <input type="number" class="form-control" name="quantity" required>
+                            <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
                             <input type="hidden" name="carbonationLevel" value="LIGHT">
                             <input type="hidden" name="packageCapacity" value="HALF_LITER">
                         </div>
