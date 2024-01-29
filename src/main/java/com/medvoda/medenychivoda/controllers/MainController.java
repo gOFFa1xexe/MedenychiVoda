@@ -22,7 +22,7 @@ public class MainController {
         this.packageService = packageService;
     }
     @GetMapping
-    public String showMainPage(Model model){
+    public String showMainPage(@RequestParam(name = "capacity", defaultValue = "ONE_AND_A_HALF_LITER") String capacity,Model model){
         int nonCarbonatedCount= packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.NONE,
                 PackageCapacity.ONE_AND_A_HALF_LITER);
         int strongCarbonatedCount= packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.STRONG,
@@ -44,6 +44,7 @@ public class MainController {
         model.addAttribute("nonCarbonatedCountToday",nonCarbonatedCountToday);
         model.addAttribute("lightCarbonatedCountToday",lightCarbonatedCountToday);
         model.addAttribute("strongCarbonatedCountToday",strongCarbonatedCountToday);
+        model.addAttribute("selectedCapacity",capacity);
         model.addAttribute("todayCount",
                 packageService.getPackageCountByPackageCapacityAndCreatedAt(PackageCapacity.ONE_AND_A_HALF_LITER));
 

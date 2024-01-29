@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <!-- Можливо, вам потрібно додати інші мета-дані або посилання на стилі тут, якщо це необхідно -->
+</head>
+<body>
+
+<!-- Фрагмент для рядка води -->
+<tr th:fragment="waterRow(type, count, carbonationLevel, packageCapacity, countToday)">
+  <td th:text="${type}"></td>
+  <td th:text="${count}"></td>
+  <td>
+    <form th:action="@{'/main/add-package/' + ${carbonationLevel}}" method="post">
+      <div class="form-group">
+        <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
+        <input type="hidden" name="carbonationLevel" th:value="${carbonationLevel}">
+        <input type="hidden" name="packageCapacity" th:value="${packageCapacity}">
+      </div>
+      <button type="submit" class="btn btn-primary">Додати</button>
+    </form>
+  </td>
+  <td th:text="${countToday}"></td>
+</tr>
+
+<!-- Додавайте інші фрагменти, якщо потрібно -->
+
+</body>
+</html>
