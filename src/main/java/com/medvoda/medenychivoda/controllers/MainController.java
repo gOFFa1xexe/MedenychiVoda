@@ -21,7 +21,6 @@ public class MainController {
     public MainController(PackageService packageService) {
         this.packageService = packageService;
     }
-
     @GetMapping
     public String showMainPage(Model model){
         int nonCarbonatedCount= packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.NONE,
