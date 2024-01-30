@@ -39,7 +39,7 @@
                 <td>Негазована вода</td>
                 <td th:text="${nonCarbonatedCount}"></td>
                 <td>
-                    <form th:action="@{'/main/add-package/NONE'}" method="post">
+                    <form th:action="@{'/main/add-package/NONE'}" method="post" onsubmit="return validateInput(this);">
                         <div class="form-group">
                             <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
                             <input type="hidden" name="carbonationLevel" value="NONE">
@@ -54,7 +54,7 @@
                 <td>Сильногазована вода</td>
                 <td th:text="${strongCarbonatedCount}"></td>
                 <td>
-                    <form th:action="@{'/main/add-package/STRONG'}" method="post">
+                    <form th:action="@{'/main/add-package/STRONG'}" method="post" onsubmit="return validateInput(this);">
                         <div class="form-group">
                             <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
                             <input type="hidden" name="carbonationLevel" value="STRONG">
@@ -69,7 +69,7 @@
                 <td>Слабогазована вода</td>
                 <td th:text="${lightCarbonatedCount}"></td>
                 <td>
-                    <form th:action="@{'/main/add-package/LIGHT'}" method="post">
+                    <form th:action="@{'/main/add-package/LIGHT'}" method="post" onsubmit="return validateInput(this);">
                         <div class="form-group">
                             <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
                             <input type="hidden" name="carbonationLevel" value="LIGHT">
@@ -91,6 +91,5 @@
     </div>
 
 </div>
-<script src="/JS/script.js"></script>
 </body>
 </html>
