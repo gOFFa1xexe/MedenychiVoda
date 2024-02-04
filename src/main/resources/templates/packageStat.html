@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Додайте необхідні метатеги, наприклад, charset та інші -->
+    <title>Package Statistics</title>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h2 class="text-center">Package Statistics</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Carbonation Level</th>
+                        <th>Creation time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="package : ${packages}">
+                        <td th:text="${package.id}"></td>
+                        <td th:text="${package.carbonationLevel}"></td>
+                        <td th:text="${package.createdAt}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

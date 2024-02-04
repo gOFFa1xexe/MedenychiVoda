@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 public interface PackageRepository  extends JpaRepository<Packages,Long> {
     int countByCarbonationLevelAndPackageCapacity(CarbonationLevel carbonationLevel, PackageCapacity packageCapacity);
@@ -17,4 +18,8 @@ public interface PackageRepository  extends JpaRepository<Packages,Long> {
                                                                    LocalDateTime today);
     int countByPackageCapacityAndCreatedAtAfter(PackageCapacity packageCapacity,LocalDateTime today);
     Packages findByCarbonationLevel(CarbonationLevel carbonationLevel);
+
+    List<Package> getAllByCarbonationLevel(CarbonationLevel carbonationLevel,
+                                           PackageCapacity packageCapacity,
+                                           LocalDateTime today);
 }

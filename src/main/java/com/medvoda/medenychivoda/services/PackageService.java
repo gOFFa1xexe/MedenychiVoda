@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Service
 public class PackageService {
     private final PackageRepository packageRepository;
+
     @Autowired
     public PackageService(PackageRepository packageRepository){
         this.packageRepository=packageRepository;
@@ -22,6 +24,17 @@ public class PackageService {
     public int getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel carbonationLevel, PackageCapacity packageCapacity){
         return packageRepository.countByCarbonationLevelAndPackageCapacity(carbonationLevel,packageCapacity);
     }
+
+
+
+        public List<Package> getAllPackagesByCarbonationLevelAndCapacityAndCreatedAtAfter(
+                CarbonationLevel carbonationLevel, PackageCapacity packageCapacity, LocalDateTime today) {
+            return packageRepository.getAllByCarbonationLevel(carbonationLevel, packageCapacity, today);
+        }
+
+
+
+
 
 
     public int getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel carbonationLevel,
