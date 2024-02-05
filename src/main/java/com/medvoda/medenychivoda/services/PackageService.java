@@ -1,19 +1,21 @@
 package com.medvoda.medenychivoda.services;
 
-import com.medvoda.medenychivoda.BottleEntity.CarbonationLevel;
-import com.medvoda.medenychivoda.BottleEntity.PackageCapacity;
-import com.medvoda.medenychivoda.BottleEntity.Packages;
+import com.medvoda.medenychivoda.Entity.PackageEntity.CarbonationLevel;
+import com.medvoda.medenychivoda.Entity.PackageEntity.PackageCapacity;
+import com.medvoda.medenychivoda.Entity.PackageEntity.Packages;
 import com.medvoda.medenychivoda.repositories.PackageRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Service
 public class PackageService {
     private final PackageRepository packageRepository;
+
     @Autowired
     public PackageService(PackageRepository packageRepository){
         this.packageRepository=packageRepository;
@@ -23,9 +25,14 @@ public class PackageService {
         return packageRepository.countByCarbonationLevelAndPackageCapacity(carbonationLevel,packageCapacity);
     }
 
+    public List<Packages> getAllPackagesByCarbonationLevelAndCapacityAndCreatedAtAfter(
+            CarbonationLevel carbonationLevel, PackageCapacity packageCapacity, LocalDateTime today) {
+        return packageRepository.getAllByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(
+                carbonationLevel, packageCapacity, today);
+    }
 
     public int getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel carbonationLevel,
-                                                                   PackageCapacity packageCapacity){
+                                                                                    PackageCapacity packageCapacity){
         LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
         return packageRepository.countByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(carbonationLevel,packageCapacity,today);
     }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<tr th:fragment="waterRow(type, count, carbonationLevel, packageCapacity, countToday)">
+  <td th:text="${type}"></td>
+  <td th:text="${count}"></td>
+  <td>
+    <form th:action="@{'/addPackage/add-package/' + ${carbonationLevel}}" method="post">
+      <div class="form-group">
+        <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
+        <input type="hidden" name="carbonationLevel" th:value="${carbonationLevel}">
+        <input type="hidden" name="packageCapacity" th:value="${packageCapacity}">
+      </div>
+      <button type="submit" class="btn btn-primary">Додати</button>
+    </form>
+  </td>
+  <td th:text="${countToday}"></td>
+</tr>
+
+
+</body>
+</html>

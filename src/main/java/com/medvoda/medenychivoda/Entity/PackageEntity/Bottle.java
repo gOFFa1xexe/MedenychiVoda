@@ -1,4 +1,5 @@
-package com.medvoda.medenychivoda.BottleEntity;
+/*
+package com.medvoda.medenychivoda.Entity.PackageEntity;
 
 import jakarta.persistence.*;
 
@@ -44,3 +45,4 @@ public class Bottle {
     }
 }
 
+*/

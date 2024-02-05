@@ -1,4 +1,4 @@
-package com.medvoda.medenychivoda.Entity;
+package com.medvoda.medenychivoda.Entity.UserEntity;
 
 import jakarta.persistence.*;
 

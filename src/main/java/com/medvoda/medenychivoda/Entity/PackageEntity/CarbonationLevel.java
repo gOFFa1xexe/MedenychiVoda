@@ -1,4 +1,4 @@
-package com.medvoda.medenychivoda.BottleEntity;
+package com.medvoda.medenychivoda.Entity.PackageEntity;
 
 public enum CarbonationLevel {
         NONE, // Немає газу

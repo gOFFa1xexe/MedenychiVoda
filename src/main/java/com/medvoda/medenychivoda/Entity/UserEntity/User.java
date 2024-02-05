@@ -1,4 +1,5 @@
-package com.medvoda.medenychivoda.Entity;
+package com.medvoda.medenychivoda.Entity.UserEntity;
+import com.medvoda.medenychivoda.Entity.UserEntity.Roles;
 import jakarta.persistence.*;
 
 import java.util.Set;

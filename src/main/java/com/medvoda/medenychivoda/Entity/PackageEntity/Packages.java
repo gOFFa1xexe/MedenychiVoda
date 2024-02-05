@@ -1,4 +1,4 @@
-package com.medvoda.medenychivoda.BottleEntity;
+package com.medvoda.medenychivoda.Entity.PackageEntity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

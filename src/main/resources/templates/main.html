@@ -1,99 +1,54 @@
+<!-- main.html -->
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="/CSS/style.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script src="/JS/script.js"></script>
-
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Меденицькі Джерела</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/style.css">
+    <title>Main Page</title>
 </head>
 <body>
-
-<div class="w3-sidebar w3-bar-block w3-blue w3-border w3-card w3-large w3-padding" style="width:15%">
-    <a href="/main" class="w3-bar-item w3-button">Півтори літра</a>
-    <a href="/main/half-a-liter" class="w3-bar-item w3-button">Пів літра</a>
-    <a href="/main/five-liter" class="w3-bar-item w3-button">П'ять літрів</a>
-</div>
-
-<div style="margin-left:15%">
-
-<h1 style="color:blue">Меденицькі Джерела </h1>
-
 <div class="container mt-5">
-    <h2>Вміст складу</h2>
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h2 class="text-center">Package Statistics</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Carbonation Level</th>
+                        <th>Package Capacity</th>
+                        <th>Non-carbonated Count</th>
+                        <th>Light Carbonated Count</th>
+                        <th>Strong Carbonated Count</th>
+                        <th>Non-carbonated Count Today</th>
+                        <th>Light Carbonated Count Today</th>
+                        <th>Strong Carbonated Count Today</th>
+                        <th>Today's Total Count</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><a th:href="@{/statistic/ONE_AND_A_HALF_LITER}"><span th:text="${selectedCapacity}"></span></a></td>
+                        <td><span th:text="${packageCapacity}"></span></td>
+                        <td><span th:text="${nonCarbonatedCount}"></span></td>
+                        <td><span th:text="${strongCarbonatedCount}"></span></td>
+                        <td><span th:text="${lightCarbonatedCount}"></span></td>
+                        <td><span th:text="${nonCarbonatedCountToday}"></span></td>
+                        <td><span th:text="${lightCarbonatedCountToday}"></span></td>
+                        <td><span th:text="${strongCarbonatedCountToday}"></span></td>
+                        <td><span th:text="${todayCount}"></span></td>
+                    </tr>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Тип</th>
-            <th scope="col">Кількість(пакетів)</th>
-            <th scope="col">Дії</th>
-            <th scope="col">Зроблено сьогодні</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Негазована вода</td>
-            <td th:text="${nonCarbonatedCount}"></td>
-            <td>
-                <form th:action="@{'/main/add-package/NONE'}" method="post" onsubmit="return validateInput(this);">
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
-                        <input type="hidden" name="carbonationLevel" value="NONE">
-                        <input type="hidden" name="packageCapacity" value="ONE_AND_A_HALF_LITER">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Додати</button>
-                </form>
-            </td>
-            <td th:text="${nonCarbonatedCountToday}"></td>
-        </tr>
-        <tr>
-            <td>Сильногазована вода</td>
-            <td th:text="${strongCarbonatedCount}"></td>
-            <td>
-                <form th:action="@{'/main/add-package/STRONG'}" method="post" onsubmit="return validateInput(this);">
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
-                        <input type="hidden" name="carbonationLevel" value="STRONG">
-                        <input type="hidden" name="packageCapacity" value="ONE_AND_A_HALF_LITER">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Додати</button>
-
-                </form>
-            </td>
-            <td th:text="${strongCarbonatedCountToday}"></td>
-
-        </tr>
-        <tr>
-            <td>Слабогазована вода</td>
-            <td th:text="${lightCarbonatedCount}"></td>
-            <td>
-                <form th:action="@{'/main/add-package/LIGHT'}" method="post" onsubmit="return validateInput(this);">
-                    <div class="form-group">
-                        <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
-                        <input type="hidden" name="carbonationLevel" value="LIGHT">
-                        <input type="hidden" name="packageCapacity" value="ONE_AND_A_HALF_LITER">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Додати</button>
-                </form>
-            </td>
-
-            <td th:text="${lightCarbonatedCountToday}"></td>
-
-        </tr>
-        <tr>
-           <td></td>
-           <td></td>
-           <td></td>
-            <td>Загально сьогодні: <span th:text="${todayCount}"></span></td>
-        </tr>
-
-        </tbody>
-    </table>
-</div>
-
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
