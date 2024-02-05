@@ -4,9 +4,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Main Page</title>
 </head>
 <body>
@@ -20,7 +20,6 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Carbonation Level</th>
                         <th>Package Capacity</th>
                         <th>Non-carbonated Count</th>
                         <th>Light Carbonated Count</th>
@@ -34,7 +33,6 @@
                     <tbody>
                     <tr>
                         <td><a th:href="@{/statistic/ONE_AND_A_HALF_LITER}"><span th:text="${selectedCapacity}"></span></a></td>
-                        <td><span th:text="${packageCapacity}"></span></td>
                         <td><span th:text="${nonCarbonatedCount}"></span></td>
                         <td><span th:text="${strongCarbonatedCount}"></span></td>
                         <td><span th:text="${lightCarbonatedCount}"></span></td>

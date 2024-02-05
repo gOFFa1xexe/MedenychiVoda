@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.medvoda.medenychivoda.BottleEntity.PackageCapacity.*;
+
 @Controller
 @RequestMapping("/main")
 public class MainController {
@@ -25,29 +27,30 @@ public class MainController {
 
     @GetMapping
     public String showMainPage(Model model) {
-        int nonCarbonatedCount = packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.NONE,
-                PackageCapacity.ONE_AND_A_HALF_LITER);
-        int strongCarbonatedCount = packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.STRONG,
-                PackageCapacity.ONE_AND_A_HALF_LITER);
-        int lightCarbonatedCount = packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.LIGHT,
-                PackageCapacity.ONE_AND_A_HALF_LITER);
-        int nonCarbonatedCountToday = packageService.getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel.NONE,
-                PackageCapacity.ONE_AND_A_HALF_LITER);
-        int strongCarbonatedCountToday = packageService.getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel.STRONG,
-                PackageCapacity.ONE_AND_A_HALF_LITER);
-        int lightCarbonatedCountToday = packageService.getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel.LIGHT,
-                PackageCapacity.ONE_AND_A_HALF_LITER);
+       PackageCapacity packageCapacity = ONE_AND_A_HALF_LITER;
+              int nonCarbonatedCount = packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.NONE,
+                      packageCapacity);
+              int strongCarbonatedCount = packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.STRONG,
+                      packageCapacity);
+              int lightCarbonatedCount = packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.LIGHT,
+                      packageCapacity);
+              int nonCarbonatedCountToday = packageService.getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel.NONE,
+                      packageCapacity);
+              int strongCarbonatedCountToday = packageService.getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel.STRONG,
+                      packageCapacity);
+              int lightCarbonatedCountToday = packageService.getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel.LIGHT,
+                      packageCapacity);
 
-                model.addAttribute("nonCarbonatedCount", nonCarbonatedCount);
-                model.addAttribute("strongCarbonatedCount", strongCarbonatedCount);
-                model.addAttribute("lightCarbonatedCount", lightCarbonatedCount);
-                model.addAttribute("nonCarbonatedCountToday", nonCarbonatedCountToday);
-                model.addAttribute("strongCarbonatedCountToday", strongCarbonatedCountToday);
-                model.addAttribute("lightCarbonatedCountToday", lightCarbonatedCountToday);
-                model.addAttribute("selectedCapacity", PackageCapacity.ONE_AND_A_HALF_LITER);
-                model.addAttribute("todayCount", packageService.getPackageCountByPackageCapacityAndCreatedAt(PackageCapacity.ONE_AND_A_HALF_LITER));
+              model.addAttribute("nonCarbonatedCount", nonCarbonatedCount);
+              model.addAttribute("strongCarbonatedCount", strongCarbonatedCount);
+              model.addAttribute("lightCarbonatedCount", lightCarbonatedCount);
+              model.addAttribute("nonCarbonatedCountToday", nonCarbonatedCountToday);
+              model.addAttribute("strongCarbonatedCountToday", strongCarbonatedCountToday);
+              model.addAttribute("lightCarbonatedCountToday", lightCarbonatedCountToday);
+              model.addAttribute("selectedCapacity", packageCapacity);
+              model.addAttribute("todayCount", packageService.getPackageCountByPackageCapacityAndCreatedAt(packageCapacity));
 
-            return "main";
-        }
+          return "main";
+    }
 }
 

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -23,15 +22,12 @@ public class StatisticsController {
 
     @GetMapping("/{capacity}")
     public String showPackageInfo(@PathVariable String capacity, Model model) {
-        CarbonationLevel carbonationLevel = CarbonationLevel.NONE; // Змініть згідно вашим потребам
         PackageCapacity packageCapacity = PackageCapacity.valueOf(capacity);
-        LocalDateTime today = LocalDateTime.now();
 
-        List<Package> packagesList = packageService.getAllPackagesByCarbonationLevelAndCapacityAndCreatedAtAfter(
-                carbonationLevel, packageCapacity, today);
+        List<Packages> packagesList = packageService.getAllPackagesByCapacity(packageCapacity);
 
         model.addAttribute("packages", packagesList);
+        model.addAttribute("selectedCapacity", capacity);
         return "packageStat";
     }
 }
-

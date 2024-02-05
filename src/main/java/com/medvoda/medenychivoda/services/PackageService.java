@@ -27,12 +27,10 @@ public class PackageService {
 
 
 
-        public List<Package> getAllPackagesByCarbonationLevelAndCapacityAndCreatedAtAfter(
-                CarbonationLevel carbonationLevel, PackageCapacity packageCapacity, LocalDateTime today) {
-            return packageRepository.getAllByCarbonationLevel(carbonationLevel, packageCapacity, today);
-        }
 
-
+    public List<Packages> getAllPackagesByCapacity(PackageCapacity packageCapacity) {
+        return packageRepository.findAllByPackageCapacity(packageCapacity);
+    }
 
 
 
