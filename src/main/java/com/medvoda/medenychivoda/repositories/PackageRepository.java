@@ -20,5 +20,7 @@ public interface PackageRepository  extends JpaRepository<Packages,Long> {
     List<Packages> getAllByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(
             CarbonationLevel carbonationLevel, PackageCapacity packageCapacity, LocalDateTime today);
 
+    List<Packages> findAllByPackageCapacity(PackageCapacity packageCapacity);
+
 }
 

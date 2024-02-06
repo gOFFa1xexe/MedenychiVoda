@@ -42,7 +42,7 @@ public class MainController {
         model.addAttribute("strongCarbonatedCountToday", strongCarbonatedCountToday);
         model.addAttribute("lightCarbonatedCountToday", lightCarbonatedCountToday);
         model.addAttribute("selectedCapacity", PackageCapacity.ONE_AND_A_HALF_LITER);
-        model.addAttribute("todayCount", packageService.getPackageCountByPackageCapacityAndCreatedAt(PackageCapacity.ONE_AND_A_HALF_LITER));
+        model.addAttribute("todayCount", packageService.getPackageToday(PackageCapacity.ONE_AND_A_HALF_LITER));
 
         return "main";
     }

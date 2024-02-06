@@ -1,6 +1,5 @@
 package com.medvoda.medenychivoda.controllers;
 
-
 import com.medvoda.medenychivoda.Entity.PackageEntity.CarbonationLevel;
 import com.medvoda.medenychivoda.Entity.PackageEntity.PackageCapacity;
 import com.medvoda.medenychivoda.services.PackageService;
@@ -10,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
+
 @Controller
-@RequestMapping("/addPackage")
+@RequestMapping("/packages")
 public class PackageController {
 
 
@@ -46,11 +47,11 @@ public class PackageController {
         model.addAttribute("strongCarbonatedCountToday",strongCarbonatedCountToday);
         model.addAttribute("selectedCapacity",capacity);
         model.addAttribute("todayCount",
-                packageService.getPackageCountByPackageCapacityAndCreatedAt(PackageCapacity.valueOf(capacity)));
+                packageService.getPackageToday(PackageCapacity.valueOf(capacity)));
         return "addPackage";
     }
 
-    @PostMapping("add-package/{carbonationLevel}")
+    @PostMapping("/addPackage/{carbonationLevel}")
     public String addPackage(@PathVariable CarbonationLevel carbonationLevel,
                              @RequestParam int quantity,
                              @RequestParam PackageCapacity packageCapacity, HttpServletRequest request){
@@ -61,7 +62,7 @@ public class PackageController {
             return "redirect:" + referer;
         } else {
 
-            return "redirect:/addPackage";
+            return "redirect:/packages";
         }
     }
 }

@@ -2,6 +2,7 @@ package com.medvoda.medenychivoda.controllers;
 
 import com.medvoda.medenychivoda.Entity.PackageEntity.CarbonationLevel;
 import com.medvoda.medenychivoda.Entity.PackageEntity.PackageCapacity;
+import com.medvoda.medenychivoda.Entity.PackageEntity.Packages;
 import com.medvoda.medenychivoda.services.PackageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,22 +18,17 @@ import java.util.List;
 @RequestMapping("/statistic")
 public class StatisticsController {
 
-    private PackageService packageService;
     @Autowired
-    public StatisticsController(PackageService packageService) {
-        this.packageService = packageService;
-    }
+    private PackageService packageService;
 
     @GetMapping("/{capacity}")
     public String showPackageInfo(@PathVariable String capacity, Model model) {
-        CarbonationLevel carbonationLevel = CarbonationLevel.NONE;
         PackageCapacity packageCapacity = PackageCapacity.valueOf(capacity);
-        LocalDateTime today = LocalDateTime.now();
 
-        /*List<Package> packagesList = packageService.getAllPackagesByCarbonationLevelAndCapacityAndCreatedAtAfter(
-                carbonationLevel, packageCapacity, today);*/
+        List<Packages> packagesList = packageService.getAllPackagesByCapacity(packageCapacity);
 
-       /* model.addAttribute("packages", packagesList);*/
+        model.addAttribute("packages", packagesList);
+        model.addAttribute("selectedCapacity", capacity);
         return "packageStat";
     }
 }

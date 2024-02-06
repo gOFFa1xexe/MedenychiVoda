@@ -1,7 +1,9 @@
 package com.medvoda.medenychivoda.controllers;
 
 import com.medvoda.medenychivoda.Entity.OrderEntity.Order;
+import com.medvoda.medenychivoda.Entity.OrderEntity.OrderItem;
 import com.medvoda.medenychivoda.services.OrderService;
+import jdk.jfr.MemoryAddress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,8 @@ public class OrderController {
         return "orders";
     }
     @PostMapping("/create-order")
-    public String createOrder(@ModelAttribute Order order) {
-
+    public String createOrder(@ModelAttribute Order order, @ModelAttribute OrderItem orderItem) {
+        order.addOrderItem(orderItem);
         orderService.saveOrder(order);
 
         return "orders";

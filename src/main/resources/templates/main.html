@@ -1,26 +1,30 @@
-<!-- main.html -->
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/CSS/style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Main Page</title>
 </head>
 <body>
+
 <div class="container mt-5">
+    <div class="card-header bg-dark text-white" style="width:15%">
+        <a href="/packages/ONE_AND_A_HALF_LITER" class="w3-bar-item w3-button">Півтори літра</a>
+        <a href="/packages/HALF_LITER" class="w3-bar-item w3-button">Пів літра</a>
+        <a href="/packages/FIVE_LITER" class="w3-bar-item w3-button">П'ять літрів</a>
+    </div>
     <div class="card">
         <div class="card-header bg-dark text-white">
             <h2 class="text-center">Package Statistics</h2>
         </div>
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Carbonation Level</th>
                         <th>Package Capacity</th>
                         <th>Non-carbonated Count</th>
                         <th>Light Carbonated Count</th>
@@ -33,8 +37,8 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><a th:href="@{/statistic/ONE_AND_A_HALF_LITER}"><span th:text="${selectedCapacity}"></span></a></td>
-                        <td><span th:text="${packageCapacity}"></span></td>
+                        <td><a th:href="@{'/statistic/' + ${selectedCapacity}}">
+                            <span th:text="${selectedCapacity}"></span></a></td>
                         <td><span th:text="${nonCarbonatedCount}"></span></td>
                         <td><span th:text="${strongCarbonatedCount}"></span></td>
                         <td><span th:text="${lightCarbonatedCount}"></span></td>
@@ -43,7 +47,6 @@
                         <td><span th:text="${strongCarbonatedCountToday}"></span></td>
                         <td><span th:text="${todayCount}"></span></td>
                     </tr>
-
                     </tbody>
                 </table>
             </div>

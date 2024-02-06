@@ -36,7 +36,7 @@ public class PackageService {
         LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
         return packageRepository.countByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(carbonationLevel,packageCapacity,today);
     }
-    public int getPackageCountByPackageCapacityAndCreatedAt(PackageCapacity packageCapacity){
+    public int getPackageToday(PackageCapacity packageCapacity){
         LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
         return packageRepository.countByPackageCapacityAndCreatedAtAfter(packageCapacity,today);
     }
@@ -49,6 +49,11 @@ public class PackageService {
             newPackage.setPackageCapacity(packageCapacity);
             packageRepository.save(newPackage);
         }
+    }
+
+
+    public List<Packages> getAllPackagesByCapacity(PackageCapacity packageCapacity) {
+        return packageRepository.findAllByPackageCapacity(packageCapacity);
     }
 
 }

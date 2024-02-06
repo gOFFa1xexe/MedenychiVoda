@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/CSS/style.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <title>Package Statistics</title>
 </head>
 <body>
 <div class="container mt-5">
   <div class="card">
     <div class="card-header bg-dark text-white">
-      <h2 class="text-center">Package Statistics</h2>
+      <h2 class="text-center">Package Statistics  <td th:text="${selectedCapacity}"></td></h2>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -15,15 +18,15 @@
           <thead>
           <tr>
             <th>Id</th>
-            <th>Carbonation Level</th>
-            <th>Creation time</th>
+            <th>Рівень Газованості</th>
+            <th>Ємкість</th>
           </tr>
           </thead>
           <tbody>
           <tr th:each="package : ${packages}">
             <td th:text="${package.id}"></td>
             <td th:text="${package.carbonationLevel}"></td>
-            <td th:text="${package.createdAt}"></td>
+            <td th:text="${package.packageCapacity}"></td>
           </tr>
           </tbody>
         </table>

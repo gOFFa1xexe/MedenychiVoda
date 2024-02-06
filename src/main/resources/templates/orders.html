@@ -13,7 +13,8 @@
   <a href="/addPackage/ONE_AND_A_HALF_LITER" class="w3-bar-item w3-button">Півтори літра</a>
   <a href="/addPackage/HALF_LITER" class="w3-bar-item w3-button">Пів літра</a>
   <a href="/addPackage/five-liter" class="w3-bar-item w3-button">П'ять літрів</a>
-  <a href="orders" class="w3-bar-item w3-button">Замовлення</a>
+  <a href="/orders" class="w3-bar-item w3-button">Замовлення</a>
+
 </div>
 
 <div style="margin-left:15%">
@@ -21,7 +22,7 @@
 
   <div class="container mt-5">
 
-    <form th:action="@{/order/create-order}" method="post">
+    <form th:action="@{/orders/create-order}" method="post">
       <div>
         <label for="address">Адреса:</label>
         <input type="text" id="address" name="address" required>
@@ -35,12 +36,12 @@
         <input type="text" id="customerNumber" name="customerNumber" required>
       </div>
 
-      <!--<div id="packages">
+      <div id="packages">
         <div class="package">
           <div>
             <label>Розмір:</label>
             <label>
-              <select name="orderItems0.packageCapacity" required>
+              <select name="packageCapacity" required>
                 <option value="" disabled selected>Виберіть розмір пакету</option>
                 <option value="ONE_AND_A_HALF_LITER">1.5 літра</option>
                 <option value="FIVE_LITER">5 літрів</option>
@@ -51,7 +52,7 @@
           <div>
             <label>Тип:</label>
             <label>
-              <select name="orderItems0.carbonationLevel" required>
+              <select name="carbonationLevel" required>
                 <option value="" disabled selected>Виберіть тип води</option>
                 <option value="NONE">Негазована</option>
                 <option value="STRONG">Сильногазована</option>
@@ -62,13 +63,11 @@
           <div>
             <label>Кількість:</label>
             <label>
-              <input type="number" name="orderItems0.packageQuantity" min="1" required>
+              <input type="number" name="packageQuantity" min="1" required>
             </label>
           </div>
         </div>
       </div>
--->
-      <button type="button" id="addPackage" >Додати пакет(+)</button>
 
       <button type="submit" name="submit" value="submit">Створити замовлення</button>
     </form>
