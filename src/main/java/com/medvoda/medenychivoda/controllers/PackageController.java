@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
-@RequestMapping("/addPackage")
+@RequestMapping("/Packages")
 public class PackageController {
 
 
@@ -54,7 +54,7 @@ public class PackageController {
         return "addPackage";
     }
 
-    @PostMapping("add-package/{carbonationLevel}")
+    @PostMapping("/{carbonationLevel}")
     public String addPackage(@PathVariable CarbonationLevel carbonationLevel,
                              @RequestParam int quantity,
                              @RequestParam PackageCapacity packageCapacity, HttpServletRequest request){
@@ -65,7 +65,7 @@ public class PackageController {
             return "redirect:" + referer;
         } else {
 
-            return "redirect:/addPackage";
+            return "redirect:/Packages";
         }
     }
 }
