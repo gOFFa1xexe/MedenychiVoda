@@ -19,6 +19,8 @@
                     <tr>
                         <th>Id</th>
                         <th>Рівень Газованості</th>
+                        <th>Ємкість</th>
+
 
                     </tr>
                     </thead>
@@ -26,6 +28,7 @@
                     <tr th:each="package : ${packages}">
                         <td th:text="${package.id}"></td>
                         <td th:text="${package.carbonationLevel}"></td>
+                        <td th:text="${package.packageCapacity}"></td>
 
                     </tr>
                     </tbody>

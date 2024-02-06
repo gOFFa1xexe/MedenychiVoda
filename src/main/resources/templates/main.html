@@ -32,7 +32,8 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><a th:href="@{/statistic/ONE_AND_A_HALF_LITER}"><span th:text="${selectedCapacity}"></span></a></td>
+                        <td><a th:href="@{'/statistic/' + ${selectedCapacity}}">
+                            <span th:text="${selectedCapacity}"></span></a></td>
                         <td><span th:text="${nonCarbonatedCount}"></span></td>
                         <td><span th:text="${strongCarbonatedCount}"></span></td>
                         <td><span th:text="${lightCarbonatedCount}"></span></td>
