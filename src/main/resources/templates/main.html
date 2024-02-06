@@ -10,16 +10,18 @@
     <title>Main Page</title>
 </head>
 <body>
-
+<div class="card-header bg-dark text-white" style="width:15%">
+    <a href="/main" class="w3-bar-item w3-button">Головна</a>
+    <a href="/Packages/ONE_AND_A_HALF_LITER" class="w3-bar-item w3-button">Півтори літра</a>
+    <a href="/Packages/HALF_LITER" class="w3-bar-item w3-button">Пів літра</a>
+    <a href="/Packages/FIVE_LITER" class="w3-bar-item w3-button">П'ять літрів</a>
+    <a href="/orders" class="w3-bar-item w3-button">Замовлення</a>
+</div>
 <div class="container mt-5">
-    <div class="card-header bg-dark text-white" style="width:15%">
-        <a href="/Packages/ONE_AND_A_HALF_LITER" class="w3-bar-item w3-button">Півтори літра</a>
-        <a href="/Packages/HALF_LITER" class="w3-bar-item w3-button">Пів літра</a>
-        <a href="/Packages/FIVE_LITER" class="w3-bar-item w3-button">П'ять літрів</a>
-    </div>
+
     <div class="card">
         <div class="card-header bg-dark text-white">
-            <h2 class="text-center">Package Statistics</h2>
+            <h2 class="text-center">Статистика</h2>
         </div>
 
         <div class="card-body">
@@ -27,30 +29,30 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Package Capacity</th>
-                        <th>Non-carbonated Count</th>
-                        <th>Light Carbonated Count</th>
-                        <th>Strong Carbonated Count</th>
-                        <th>Non-carbonated Count Today</th>
-                        <th>Light Carbonated Count Today</th>
-                        <th>Strong Carbonated Count Today</th>
-                        <th>Today's Total Count</th>
+                        <th>Ємність</th>
+                        <th>Негазована</th>
+                        <th>Слабогазована</th>
+                        <th>Сильногазована</th>
+                        <th>Негазована за сьогодні</th>
+                        <th>Слабогазована</th>
+                        <th>Сильногазована за сьогодні</th>
+                        <th>Загальна кількість за сьогодні</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td><a th:href="@{'/statistic/' + ${selectedCapacity}}">
                             <span th:text="${selectedCapacity}"></span></a></td>
-                        <td><span th:text="${nonCarbonatedCount}"></span></td>
-                        <td><span th:text="${strongCarbonatedCount}"></span></td>
-                        <td><span th:text="${lightCarbonatedCount}"></span></td>
-                        <td><span th:text="${nonCarbonatedCountToday}"></span></td>
-                        <td><span th:text="${lightCarbonatedCountToday}"></span></td>
-                        <td><span th:text="${strongCarbonatedCountToday}"></span></td>
-                        <td><span th:text="${todayCount}"></span></td>
+                        <td><span th:text="${integerList[0]}"></span></td>
+                        <td><span th:text="${integerList[1]}"></span></td>
+                        <td><span th:text="${integerList[2]}"></span></td>
+                        <td><span th:text="${integerList[3]}"></span></td>
+                        <td><span th:text="${integerList[4]}"></span></td>
+                        <td><span th:text="${integerList[5]}"></span></td>
+                        <td><span th:text="${integerList[6]}"></span></td>
                     </tr>
-
                     </tbody>
+
                 </table>
             </div>
         </div>

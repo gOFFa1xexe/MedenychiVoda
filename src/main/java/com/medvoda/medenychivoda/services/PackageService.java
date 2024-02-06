@@ -25,7 +25,10 @@ public class PackageService {
         return packageRepository.countByCarbonationLevelAndPackageCapacity(carbonationLevel,packageCapacity);
     }
 
-
+    public int getPackageToday(PackageCapacity packageCapacity){
+        LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
+        return packageRepository.countByPackageCapacityAndCreatedAtAfter(packageCapacity,today);
+    }
 
 
     public List<Packages> getAllPackagesByCapacity(PackageCapacity packageCapacity) {

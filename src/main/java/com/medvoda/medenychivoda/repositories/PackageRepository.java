@@ -25,6 +25,7 @@ public interface PackageRepository  extends JpaRepository<Packages,Long> {
     List<Packages> findAllByPackageCapacity(PackageCapacity packageCapacity);
 
 
+
 }
 
 
