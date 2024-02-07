@@ -25,11 +25,11 @@ public class PackageService {
         return packageRepository.countByCarbonationLevelAndPackageCapacity(carbonationLevel,packageCapacity);
     }
 
-    public List<Packages> getAllPackagesByCarbonationLevelAndCapacityAndCreatedAtAfter(
+   /* public List<Packages> getAllPackagesByCarbonationLevelAndCapacityAndCreatedAtAfter(
             CarbonationLevel carbonationLevel, PackageCapacity packageCapacity, LocalDateTime today) {
         return packageRepository.getAllByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(
                 carbonationLevel, packageCapacity, today);
-    }
+    }*/
 
     public int getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel carbonationLevel,
                                                                                     PackageCapacity packageCapacity){
@@ -51,7 +51,41 @@ public class PackageService {
         }
     }
 
-
+    public int getPackageCountToday(List<Packages> packagesList,CarbonationLevel carbonationLevel){
+        int count=0;
+        LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
+        if(packagesList!=null){
+            for(Packages packages:packagesList){
+                if(packages.getCreatedAt().isAfter(today)&&packages.getCarbonationLevel()==carbonationLevel){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    public int getPackageCountToday(List<Packages> packagesList){
+        int count=0;
+        LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
+        if(packagesList!=null){
+            for(Packages packages:packagesList){
+                if(packages.getCreatedAt().isAfter(today)){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    public int getPackageCount(List<Packages> packagesList, CarbonationLevel carbonationLevel) {
+       int count=0;
+       if(packagesList!=null) {
+           for (Packages packages : packagesList) {
+               if (packages.getCarbonationLevel() == carbonationLevel) {
+                   count++;
+               }
+           }
+       }
+       return count;
+    }
     public List<Packages> getAllPackagesByCapacity(PackageCapacity packageCapacity) {
         return packageRepository.findAllByPackageCapacity(packageCapacity);
     }

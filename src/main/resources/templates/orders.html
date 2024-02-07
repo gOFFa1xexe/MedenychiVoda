@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/CSS/style.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <head>
   <title>Меденицькі Джерела</title>
 </head>
 <body>
 <div class="w3-sidebar w3-bar-block w3-blue w3-border w3-card w3-large w3-padding" style="width:15%">
-  <a href="/addPackage/ONE_AND_A_HALF_LITER" class="w3-bar-item w3-button">Півтори літра</a>
-  <a href="/addPackage/HALF_LITER" class="w3-bar-item w3-button">Пів літра</a>
-  <a href="/addPackage/five-liter" class="w3-bar-item w3-button">П'ять літрів</a>
+  <a href="/main" class="w3-bar-item w3-button">Статистика</a>
+  <a href="/packages/ONE_AND_A_HALF_LITER" class="w3-bar-item w3-button">Півтори літра</a>
+  <a href="/packages/HALF_LITER" class="w3-bar-item w3-button">Пів літра</a>
+  <a href="/packages/FIVE_LITER" class="w3-bar-item w3-button">П'ять літрів</a>
   <a href="/orders" class="w3-bar-item w3-button">Замовлення</a>
-
 </div>
 
 <div style="margin-left:15%">
@@ -22,54 +22,107 @@
 
   <div class="container mt-5">
 
-    <form th:action="@{/orders/create-order}" method="post">
-      <div>
-        <label for="address">Адреса:</label>
-        <input type="text" id="address" name="address" required>
-      </div>
-      <div>
-        <label for="city">Місто:</label>
-        <input type="text" id="city" name="city" required>
-      </div>
-      <div>
-        <label for="customerNumber">Номер замовника:</label>
-        <input type="text" id="customerNumber" name="customerNumber" required>
-      </div>
+    <form id="orderForm" th:action="@{/orders/create-order}" method="POST">
+      <label for="address">Адреса:</label>
+      <input type="text" id="address" name="address"><br><br>
 
-      <div id="packages">
-        <div class="package">
-          <div>
-            <label>Розмір:</label>
-            <label>
-              <select name="packageCapacity" required>
-                <option value="" disabled selected>Виберіть розмір пакету</option>
-                <option value="ONE_AND_A_HALF_LITER">1.5 літра</option>
-                <option value="FIVE_LITER">5 літрів</option>
-                <option value="HALF_LITER">0.5 літра</option>
-              </select>
-            </label>
-          </div>
-          <div>
-            <label>Тип:</label>
-            <label>
-              <select name="carbonationLevel" required>
-                <option value="" disabled selected>Виберіть тип води</option>
-                <option value="NONE">Негазована</option>
-                <option value="STRONG">Сильногазована</option>
-                <option value="LIGHT">Слабогазована</option>
-              </select>
-            </label>
-          </div>
-          <div>
-            <label>Кількість:</label>
-            <label>
-              <input type="number" name="packageQuantity" min="1" required>
-            </label>
+      <label for="city">Місто:</label>
+      <input type="text" id="city" name="city"><br><br>
+
+      <label for="customerNumber">Номер замовника:</label>
+      <input type="text" id="customerNumber" name="customerNumber"><br><br>
+
+      <div id="orderItemsContainer">
+        <div class="orderItemContainer">
+          <h3>Пакет 1</h3>
+          <div class="orderItem">
+            <label for="packageCapacity1">Місткість:</label>
+            <select id="packageCapacity1" name="packageCapacity">
+              <option value="HALF_LITER">0.5 Літра</option>
+              <option value="ONE_AND_A_HALF_LITER">1.5 Літра</option>
+              <option value="FIVE_LITER">5 Літрів</option>
+            </select>
+            <label for="carbonationLevel1">Газованість:</label>
+            <select id="carbonationLevel1" name="carbonationLevel">
+              <option value="STRONG">Сильногазована</option>
+              <option value="LIGHT">Слабогазована</option>
+              <option value="NONE">Негазована</option>
+            </select>
+            <label for="packageQuantity1">Кількість:</label>
+            <input type="number" id="packageQuantity1" name="packageQuantity"><br><br>
           </div>
         </div>
       </div>
 
-      <button type="submit" name="submit" value="submit">Створити замовлення</button>
+      <button type="button" onclick="addOrderItem()">Додати пакет(+)</button><br><br>
+
+      <button type="submit" onclick="createOrder(event)">Створити замовлення</button>
+    </form>
+
+    <script>
+      let orderItemsCount = 1;
+
+      function addOrderItem() {
+        orderItemsCount++;
+        const orderItemContainerHtml = `
+                    <div class="orderItemContainer">
+                        <h3>Пакет ${orderItemsCount}</h3>
+                        <div class="orderItem">
+                            <label for="packageCapacity${orderItemsCount}">Місткість:</label>
+                            <select id="packageCapacity${orderItemsCount}" name="packageCapacity">
+                                <option value="HALF_LITER">0.5 Літра</option>
+                                <option value="ONE_AND_A_HALF_LITER">1.5 Літра</option>
+                                <option value="FIVE_LITER">5 Літрів</option>
+                            </select>
+                            <label for="carbonationLevel${orderItemsCount}">Газованість:</label>
+                            <select id="carbonationLevel${orderItemsCount}" name="carbonationLevel">
+                                <option value="STRONG">Сильногазована</option>
+                                <option value="LIGHT">Слабогазована</option>
+                                <option value="NONE">Негазована</option>
+                            </select>
+                            <label for="packageQuantity${orderItemsCount}">Кількість:</label>
+                            <input type="number" id="packageQuantity${orderItemsCount}" name="packageQuantity"><br><br>
+                        </div>
+                    </div>
+                `;
+        document.getElementById('orderItemsContainer').insertAdjacentHTML('beforeend', orderItemContainerHtml);
+      }
+        function createOrder(event) {
+          event.preventDefault();
+          const order = {
+            address: document.getElementById('address').value,
+            city: document.getElementById('city').value,
+            customerNumber: document.getElementById('customerNumber').value,
+            orderItems: []
+          };
+
+          for (let i = 1; i <= orderItemsCount; i++) {
+            const packageCapacity = document.getElementById(`packageCapacity${i}`).value;
+            const carbonationLevel = document.getElementById(`carbonationLevel${i}`).value;
+            const packageQuantity = document.getElementById(`packageQuantity${i}`).value;
+
+            const orderItem = {
+              packageCapacity: packageCapacity,
+              carbonationLevel: carbonationLevel,
+              packageQuantity: parseInt(packageQuantity)
+            };
+
+            order.orderItems.push(orderItem);
+          }
+
+          fetch('/orders/create-order', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(order)
+          })
+                  .then(response => response.json())
+                  .then(data => console.log(data))
+                  .catch(error => console.error('Error:', error));
+        }
+      </script>
+
     </form>
   </div>
 </div>

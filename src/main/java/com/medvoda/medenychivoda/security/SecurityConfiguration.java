@@ -20,8 +20,6 @@ import javax.sql.DataSource;
 @Configuration
 public class SecurityConfiguration  {
 
-
-
         @Bean
         public UserDetailsManager userDetailsManager(DataSource dataSource){
             JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
@@ -34,7 +32,7 @@ public class SecurityConfiguration  {
             httpSecurity.authorizeHttpRequests(configurer->configurer
                     .requestMatchers("/main").hasRole("ADMIN").anyRequest().authenticated());
             httpSecurity.formLogin(form->form.defaultSuccessUrl("/main",true));
-            httpSecurity.csrf(csrf-> csrf.disable());
+            httpSecurity.csrf(AbstractHttpConfigurer::disable);
 
             return httpSecurity.build();
         }

@@ -18,8 +18,12 @@ import java.util.List;
 @RequestMapping("/statistic")
 public class StatisticsController {
 
+    private final PackageService packageService;
+
     @Autowired
-    private PackageService packageService;
+    public StatisticsController(PackageService packageService) {
+        this.packageService = packageService;
+    }
 
     @GetMapping("/{capacity}")
     public String showPackageInfo(@PathVariable String capacity, Model model) {
