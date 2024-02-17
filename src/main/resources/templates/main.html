@@ -29,27 +29,27 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Ємність</th>
+                        <th>Ємкість</th>
                         <th>Негазована</th>
                         <th>Слабогазована</th>
                         <th>Сильногазована</th>
                         <th>Негазована за сьогодні</th>
                         <th>Слабогазована</th>
                         <th>Сильногазована за сьогодні</th>
-                        <th>Загальна кількість за сьогодні</th>
+                        <th>Загально за сьогодні</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><a th:href="@{'/statistic/' + ${selectedCapacity}}">
-                            <span th:text="${selectedCapacity}"></span></a></td>
-                        <td><span th:text="${integerList[0]}"></span></td>
-                        <td><span th:text="${integerList[1]}"></span></td>
-                        <td><span th:text="${integerList[2]}"></span></td>
-                        <td><span th:text="${integerList[3]}"></span></td>
-                        <td><span th:text="${integerList[4]}"></span></td>
-                        <td><span th:text="${integerList[5]}"></span></td>
-                        <td><span th:text="${integerList[6]}"></span></td>
+                    <tr th:each="capacity : ${capacities}">
+                        <td><a th:href="@{'/statistic/' + ${capacity}}">
+                            <span th:text="${capacity}"></span></a></td>
+                        <td><span th:text="${noneCount}"></span></td>
+                        <td><span th:text="${strongCount}"></span></td>
+                        <td><span th:text="${lightCount}"></span></td>
+                        <td><span th:text="${noneCountToday}"></span></td>
+                        <td><span th:text="${strongCountToday}"></span></td>
+                        <td><span th:text="${lightCountToday}"></span></td>
+                        <td><span th:text="${todayCount}"></span></td>
                     </tr>
                     </tbody>
 

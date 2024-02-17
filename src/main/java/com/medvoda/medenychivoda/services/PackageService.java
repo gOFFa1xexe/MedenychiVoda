@@ -30,10 +30,49 @@ public class PackageService {
         return packageRepository.countByPackageCapacityAndCreatedAtAfter(packageCapacity,today);
     }
 
+    public int getPackageCountToday(List<Packages> packagesList){
+        int count=0;
+        LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
+        if(packagesList!=null){
+            for(Packages packages:packagesList){
+                if(packages.getCreatedAt().isAfter(today)){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    public int getPackageCount(List<Packages> packagesList, CarbonationLevel carbonationLevel) {
+        int count=0;
+        if(packagesList!=null) {
+            for (Packages packages : packagesList) {
+                if (packages.getCarbonationLevel() == carbonationLevel) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+
+    public int getPackageCountToday(List<Packages> packagesList,CarbonationLevel carbonationLevel){
+        int count=0;
+        LocalDateTime today=LocalDateTime.now().toLocalDate().atStartOfDay();
+        if(packagesList!=null){
+            for(Packages packages:packagesList){
+                if(packages.getCreatedAt().isAfter(today)&&packages.getCarbonationLevel()==carbonationLevel){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
 
     public List<Packages> getAllPackagesByCapacity(PackageCapacity packageCapacity) {
         return packageRepository.findAllByPackageCapacity(packageCapacity);
     }
+
 
 
 

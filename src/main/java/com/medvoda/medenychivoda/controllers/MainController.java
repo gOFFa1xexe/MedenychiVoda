@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.medvoda.medenychivoda.BottleEntity.PackageCapacity.*;
-
 @Controller
 @RequestMapping("/main")
 public class MainController {
@@ -29,28 +27,24 @@ public class MainController {
 
     @GetMapping
     public String showMainPage(Model model) {
-        for (PackageCapacity packageCapacity : PackageCapacity.values()) {
-            int nonCarbonatedCount = packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.NONE, packageCapacity);
-            int strongCarbonatedCount = packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.STRONG, packageCapacity);
-            int lightCarbonatedCount = packageService.getPackageCountByCarbonationLevelAndCapacity(CarbonationLevel.LIGHT, packageCapacity);
-            int nonCarbonatedCountToday = packageService.getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel.NONE, packageCapacity);
-            int strongCarbonatedCountToday = packageService.getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel.STRONG, packageCapacity);
-            int lightCarbonatedCountToday = packageService.getPackageCountByCarbonationLevelAndPackageCapacityAndCreatedAtAfter(CarbonationLevel.LIGHT, packageCapacity);
-            int today = packageService.getPackageToday(packageCapacity);
-            List<Integer> integerList = Arrays.asList(
-                    nonCarbonatedCount,
-                    strongCarbonatedCount,
-                    lightCarbonatedCount,
-                    nonCarbonatedCountToday,
-                    strongCarbonatedCountToday,
-                    lightCarbonatedCountToday,
-                    today
-            );
-            model.addAttribute("selectedCapacity",packageCapacity);
-            model.addAttribute("integerList", integerList);
+        List<PackageCapacity> capacities = Arrays.asList(PackageCapacity.values());
+
+        model.addAttribute("capacities", capacities);
+
+        for (PackageCapacity packageCapacity : capacities) {
+            List<Packages> packages = packageService.getAllPackagesByCapacity(packageCapacity);
+            model.addAttribute("selectedCapacity", packageCapacity);
+
+            for (CarbonationLevel carbonationLevel : CarbonationLevel.values()) {
+                model.addAttribute(carbonationLevel.toString().toLowerCase() + "Count",
+                        packageService.getPackageCount(packages, carbonationLevel));
+                model.addAttribute(carbonationLevel.toString().toLowerCase() + "CountToday",
+                        packageService.getPackageCountToday(packages, carbonationLevel));
+            }
+            model.addAttribute("todayCount", packageService.getPackageCountToday(packages));
         }
+
         return "main";
     }
-
 }
 
