@@ -1,7 +1,11 @@
 package com.medvoda.medenychivoda.Entity.OrderEntity;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,12 +24,15 @@ public class Order {
     private LocalDateTime createdAt;
 
     @Column(name = "address")
+    @NotBlank(message = "Address can not be null")
     private String address;
 
     @Column(name = "city")
+    @NotBlank(message = "City can not be null")
     private String city;
 
     @Column(name = "customer_number")
+    @NotBlank(message = "Customer number can not be null")
     private String customerNumber;
 
 

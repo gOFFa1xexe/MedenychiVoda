@@ -4,6 +4,9 @@ package com.medvoda.medenychivoda.Entity.OrderEntity;
 import com.medvoda.medenychivoda.Entity.PackageEntity.CarbonationLevel;
 import com.medvoda.medenychivoda.Entity.PackageEntity.PackageCapacity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import org.springframework.validation.annotation.Validated;
+
 @Entity
 @Table( name ="order_item")
 public class OrderItem {
@@ -17,13 +20,16 @@ public class OrderItem {
 
     @Enumerated(EnumType.STRING)
     @Column(name="capacity",nullable = false)
+   /* @NotBlank(message = "Capacity can not be null")*/
     private PackageCapacity packageCapacity;
 
     @Enumerated(EnumType.STRING)
     @Column(name="carbonationLevel",nullable = false)
+    /*@NotBlank(message = "Carbonation level can not be null")*/
     private CarbonationLevel carbonationLevel;
 
     @Column(name = "package_quantity")
+    /*@NotBlank(message = "Package quantity can not be null")*/
     private int packageQuantity;
 
 

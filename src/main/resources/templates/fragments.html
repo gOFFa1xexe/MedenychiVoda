@@ -10,7 +10,7 @@
   <td>
     <form th:action="@{'/packages/addPackage/' + ${carbonationLevel}}" method="post">
       <div class="form-group">
-        <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="0">
+        <input type="number" class="form-control" name="quantity" required oninput="validity.valid||(value='');" min="1">
         <input type="hidden" name="carbonationLevel" th:value="${carbonationLevel}">
         <input type="hidden" name="packageCapacity" th:value="${packageCapacity}">
       </div>
